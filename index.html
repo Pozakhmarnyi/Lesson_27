@@ -3,10 +3,220 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Functions</title>
+    <title>DOM</title>
+    <style>
+      html,
+      body {
+        height: 100%;
+      }
+      .modal {
+        position: fixed;
+        top: 0;
+        padding: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.486);
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .modal__box {
+        width: 40vw;
+        height: 30vw;
+        background-color: greenyellow;
+        padding: 10px;
+        font-size: 20px;
+      }
+      .modal--hide {
+        display: none;
+      }
+      .red {
+        width: 10em;
+        height: 10em;
+        border: 3px solid red;
+        border-radius: 50%;
+        background: mistyrose;
+      }
+      .yellow {
+        width: 10em;
+        height: 10em;
+        border: 3px solid yellow;
+        border-radius: 50%;
+        background: rgba(248, 252, 35, 0.473);
+      }
+      .green {
+        width: 10em;
+        height: 10em;
+        border: 3px solid rgb(61, 243, 61);
+        border-radius: 50%;
+        background: rgba(77, 247, 54, 0.507);
+      }
+      .hide {
+        display: none;
+      }
+      .body {
+        background: white;
+        color: yellowgreen;
+      }
+      .body--RED {
+        background: rgb(241, 239, 65);
+        background: linear-gradient(
+          0deg,
+          rgba(241, 239, 65, 1) 0%,
+          rgba(255, 12, 0, 1) 100%
+        );
+      }
+      .body--YELLOW {
+        background: rgb(255, 93, 93);
+        background: linear-gradient(
+            180deg,
+            rgba(255, 93, 93, 1) 0%,
+            rgba(255, 244, 0, 1) 50%,
+            rgba(87, 255, 48, 1) 100%
+          )
+          no-repeat;
+      }
+      .body--GREEN {
+        background: rgb(241, 239, 65);
+        background: linear-gradient(
+          180deg,
+          rgba(241, 239, 65, 1) 21%,
+          rgba(9, 255, 0, 1) 100%
+        );
+      }
+    </style>
   </head>
 
-  <body>
+  <body class="body">
+    <!-- 
+    Task 1 -->
     <script src="script/sc.js"></script>
+
+    <h1>How IT working ?</h1>
+    <div id="how">
+      <input type="text" name="how" placeholder="Wth ? or OK ?)" />
+      <button onclick="pressFunc()">Try IT</button>
+    </div>
+    <p id="MYoutput"></p>
+
+    <input type="text" id="input" /> 4оРт: <span id="result"></span>
+    <script>
+      input.oninput = function() {
+        result.innerHTML = input.value;
+      };
+    </script>
+    <!-- // 2. Создать HTML-страницу с кнопкой "Открыть" и модальным окном. На модальном окне должен быть текст и кнопка "Закрыть".
+// Изначально модальное окно не отображается. При клике на кнопку "Открыть" появляется модальное окно, на кнопку "Закрыть" – исчезает. -->
+
+    <h1>Task 2</h1>
+    <button onclick="OPEN()">OPEN</button>
+
+    <div class="modal modal--hide">
+      <div class="modal__box">
+        <h2>Trying make modal box</h2>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id, magni!
+        Odio adipisci quod maiores quibusdam quos eius. Culpa, laborum voluptate
+        sit nihil cumque ipsa maiores obcaecati qui corporis pariatur ea?
+        <p>
+          <button onclick="CLOSE()">CLOSE</button>
+        </p>
+      </div>
+    </div>
+
+    <!-- 
+    3. Создать HTML-страницу со светофором и кнопкой, которая переключает светофор на следующий цвет. -->
+    <p>
+      <button class="button_yellow" onclick="yellow()">
+        Traffic lights "Yellow"
+      </button>
+      <button class="button_green hide" onclick="green()">
+        Traffic lights "Green"
+      </button>
+      <button class="button_red hide" onclick="red()">
+        Traffic lights "Red"
+      </button>
+    </p>
+    <div class="red"></div>
+    <div class="yellow"></div>
+    <div class="green"></div>
+
+    <script>
+      function yellow() {
+        document.querySelector(".yellow").style.background = "yellow";
+
+        let lightsRED = document.querySelector(".red");
+        lightsRED.classList.add("hide");
+        let lightsGREEN = document.querySelector(".green");
+        lightsGREEN.classList.add("hide");
+        let removeYELLOW = document.querySelector(".yellow");
+        removeYELLOW.classList.remove("hide");
+        let bgYELLOW = document.querySelector(".body");
+
+        bgYELLOW.classList.remove("body--RED");
+        bgYELLOW.classList.add("body--YELLOW");
+        let hideYellowButton = document.querySelector(".button_yellow");
+        hideYellowButton.classList.add("hide");
+        let removeGreenButton = document.querySelector(".button_green");
+        removeGreenButton.classList.remove("hide");
+      }
+
+      function green() {
+        document.querySelector(".green").style.background = "yellowgreen";
+
+        let lightsYELLOW = document.querySelector(".yellow");
+        lightsYELLOW.classList.add("hide");
+        let lightsGREEN = document.querySelector(".green");
+        lightsGREEN.classList.remove("hide");
+        let bgYELLOW = document.querySelector(".body");
+
+        bgYELLOW.classList.remove("body--YELLOW");
+        bgYELLOW.classList.add("body--GREEN");
+        let hideGreenButton = document.querySelector(".button_green");
+        hideGreenButton.classList.add("hide");
+        let removeRedButton = document.querySelector(".button_red");
+        removeRedButton.classList.remove("hide");
+      }
+      function red() {
+        document.querySelector(".red").style.background = "red";
+
+        let lightsGREEN = document.querySelector(".green");
+        lightsGREEN.classList.add("hide");
+        let lightsRED = document.querySelector(".red");
+        lightsRED.classList.remove("hide");
+
+        let bgYELLOW = document.querySelector(".body");
+
+        bgYELLOW.classList.remove("body--GREEN");
+        bgYELLOW.classList.add("body--RED");
+        let hideRednButton = document.querySelector(".button_red");
+        hideRednButton.classList.add("hide");
+        let removeYellowButton = document.querySelector(".button_yellow");
+        removeYellowButton.classList.remove("hide");
+      }
+    </script>
+
+    <!-- 
+///////////=======================work with Traffic)))/// -->
+
+    <script>
+      function pressFunc() {
+        let myInput = document.querySelector(`input[name="how"]`);
+        let outPUT = document.getElementById("MYoutput");
+        outPUT.innerText = "My test, " + myInput.value + "!!!!!!!!";
+        document.getElementById("how").style.display = "none";
+      }
+
+      function OPEN() {
+        // проста, але ефектна ігра з стилями (забираю стиль)
+        let open = document.querySelector(".modal");
+        open.classList.remove("modal--hide");
+      }
+      function CLOSE() {
+        // проста, але ефектна ігра з стилями (добавляю стиль)
+        let open = document.querySelector(".modal");
+        open.classList.add("modal--hide");
+      }
+    </script>
   </body>
 </html>
